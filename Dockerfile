@@ -9,12 +9,7 @@ LABEL io.k8s.description="Platform for building Clojure apps" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,clojure"
 
-RUN yum install -y \
-   java-1.8.0-openjdk \
-   java-1.8.0-openjdk-devel && \ 
-   yum clean all
-
-ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk/
+RUN yum -y install log4j java-1.8.0-openjdk-devel && yum clean all
 
 RUN curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein -o ${HOME}/lein
 RUN chmod 775 ${HOME}/lein

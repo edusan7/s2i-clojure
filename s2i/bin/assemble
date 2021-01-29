@@ -22,8 +22,11 @@ fi
 echo "---> Installing application source..."
 mv /tmp/src ${HOME}/src
 
+echo "---> JAR_FILE_PATH=$JAR_FILE_PATH"
+echo "---> JAR_ARTIFACT=$JAR_ARTIFACT"
+
 echo "---> Building application from source..."
 
 pushd ${HOME}/src > /dev/null
-mv "$(${HOME}/lein ci | awk 'END {print $2}')" ${HOME}/app-standalone.jar
+${HOME}/lein ci && mv ${HOME}/$JAR_FILE_PATH/$JAR_ARTIFACT ${HOME}/app-standalone.jar
 popd > /dev/null
